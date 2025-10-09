@@ -220,7 +220,7 @@ public class mainMenu extends javax.swing.JPanel {
 
     private void languageSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_languageSelectionActionPerformed
         // TODO add your handling code here:
-        showPanel("selectedLanguage");
+        login.showPanel("selectedLanguage");
     }//GEN-LAST:event_languageSelectionActionPerformed
 
 
