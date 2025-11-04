@@ -33,6 +33,8 @@ public class loginScreen extends javax.swing.JFrame {
         
         panels.put("mainMenu", new mainMenu(this));
         panels.put("selectedLanguage", new selectedLanguage (this));
+        panels.put("progress", new progress (this));
+        panels.put("Mistakes", new Mistakes (this));
         
         for (Map.Entry<String, JPanel> entry : panels.entrySet()) {
             getContentPane().add(entry.getValue(), entry.getKey());
@@ -149,7 +151,6 @@ public class loginScreen extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(239, 239, 239));
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setAlignmentX(0.0F);
         jPasswordField1.setAlignmentY(0.0F);
         jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
