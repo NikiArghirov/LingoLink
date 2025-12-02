@@ -10,11 +10,43 @@ package nea.coursework.lingolink;
  */
 public class testSummary extends javax.swing.JPanel {
 
+    private int score = 0;
+    private int totalQuestions = 0;
+    private String unitName = "";
+
     /**
      * Creates new form testSummary
      */
     public testSummary() {
         initComponents();
+    }
+
+    public void setTestResults(int score, int totalQuestions, String unitName) {
+        this.score = score;
+        this.totalQuestions = totalQuestions;
+        this.unitName = unitName;
+
+        // Update UI with results
+        displayResults();
+    }
+
+    private void displayResults() {
+        double percentage = totalQuestions > 0 ? (score * 100.0) / totalQuestions : 0;
+        String grade = calculateGrade(percentage);
+    }
+
+    private String calculateGrade(double percentage) {
+        if (percentage >= 90) {
+            return "A";
+        } else if (percentage >= 80) {
+            return "B";
+        } else if (percentage >= 70) {
+            return "C";
+        } else if (percentage >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
     }
 
     /**

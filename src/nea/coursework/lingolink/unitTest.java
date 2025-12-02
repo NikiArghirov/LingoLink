@@ -27,15 +27,130 @@ public class unitTest extends javax.swing.JPanel {
     private int currentUnitId = -1;
     private QuestionDAO questionDAO = new QuestionDAO();
     private List<Question> currentQuestions;
+    private int currentQuestionIndex = 0;
+    private int score = 0;
+    private int totalQuestions = 0;
+    private String unitName = "";
 
     public void setUnitId(int unitId) {
         this.currentUnitId = unitId;
+        this.currentQuestionIndex = 0;
+        this.score = 0;
+        this.unitName = questionDAO.getUnitNameById(unitId);
+        
+        // Update the title with unit name
+        jLabel1.setText(unitName + " Test");
+        
+        // Load questions for this unit
+        loadQuestionsForUnit();
+        
+        // Display the first question
+        displayCurrentQuestion();
+    }
 
-        // Simple implementation - just update the title for now
-        jLabel1.setText("Unit " + unitId + " Test");
+    private void loadQuestionsForUnit() {
+        try {
+            // Use the getQuestionsByUnitId method from your QuestionDAO
+            currentQuestions = questionDAO.getQuestionsByUnitId(currentUnitId);
+            
+            if (currentQuestions != null && !currentQuestions.isEmpty()) {
+                totalQuestions = currentQuestions.size();
+                AnswerField.setText(""); // Clear previous answer
+                AnswerField.setEnabled(true);
+            } else {
+                // No questions found for this unit
+                QuestionField.setText("No questions available for this unit.");
+                AnswerField.setEnabled(false);
+                AnswerField.setText("No questions available");
+                jButton2.setText("Finish Test");
+                totalQuestions = 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            QuestionField.setText("Error loading questions: " + e.getMessage());
+            AnswerField.setEnabled(false);
+            jButton2.setEnabled(false);
+        }
+    }
 
-        // You can add more logic here later
-        // loadQuestionsForUnit(); // Don't call this yet if it's not implemented
+    private void displayCurrentQuestion() {
+        if (currentQuestions != null && currentQuestionIndex < currentQuestions.size()) {
+            Question currentQuestion = currentQuestions.get(currentQuestionIndex);
+            
+            // Display the question text
+            QuestionField.setText(currentQuestion.getText());
+            
+            // Clear the answer field and set placeholder
+            AnswerField.setText("");
+            AnswerField.setEnabled(true);
+            
+            // Update button text if it's the last question
+            if (currentQuestionIndex == currentQuestions.size() - 1) {
+                jButton2.setText("Finish Test");
+            } else {
+                jButton2.setText("Next question");
+            }
+        } else {
+            // No more questions, show summary
+            showTestSummary();
+        }
+    }
+
+    private void checkAnswerAndMoveNext() {
+    if (currentQuestions != null && currentQuestionIndex < currentQuestions.size()) {
+        Question currentQuestion = currentQuestions.get(currentQuestionIndex);
+        String userAnswer = AnswerField.getText().trim();
+        
+        // Check if answer is correct using the QuestionDAO method
+        boolean isCorrect = questionDAO.checkAnswer(
+            currentQuestion.getQuestionId(), 
+            userAnswer
+        );
+        
+        if (isCorrect) {
+            score++; // Fixed typo: "scor" should be "score"
+        }
+        
+        // Move to next question
+        currentQuestionIndex++;
+        displayCurrentQuestion();
+    } else {
+        // No more questions, show summary
+        showTestSummary();
+    }
+}
+
+private void showTestSummary() {
+    try {
+        // Get the testSummary panel
+        testSummary summaryPanel = (testSummary) loginPanel.findPanel("testSummary");
+        
+        if (summaryPanel != null) {
+            // Show the summary panel
+            loginPanel.showPanel("testSummary");
+        } else {
+            // Fallback if testSummary panel not found
+            QuestionField.setText("Test completed!\n\n" +
+                                 "Unit: " + unitName + "\n" +
+                                 "Score: " + score + "/" + totalQuestions + "\n" +
+                                 "Percentage: " + calculatePercentage() + "%");
+            AnswerField.setEnabled(false);
+            AnswerField.setText("Test completed!");
+            jButton2.setEnabled(false);
+            jButton2.setText("Test Completed");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Fallback: show a simple message
+        QuestionField.setText("Test completed! Score: " + score + "/" + totalQuestions);
+        AnswerField.setEnabled(false);
+        jButton2.setEnabled(false);
+    }
+}
+    
+    private int calculatePercentage() {
+        if (totalQuestions == 0) return 0;
+        return (int) Math.round((score * 100.0) / totalQuestions);
     }
 
     /**
@@ -305,6 +420,7 @@ public class unitTest extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        checkAnswerAndMoveNext();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -326,7 +442,5 @@ public class unitTest extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void loadQuestionsForUnit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 }

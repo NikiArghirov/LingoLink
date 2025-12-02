@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package nea.coursework.lingolink;
-//Good boy
 import com.LingoLink.dao.UserDAO;
 import java.awt.CardLayout;
 import java.util.HashMap;
