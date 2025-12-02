@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://185.156.138.148:3306/4-narghirov";
+    private static final String URL = "jdbc:mysql://185.156.138.148:3306/LingoLinkNEA";
     private static final String USER = "4-narghirov";
     private static final String PASSWORD = "Club-Quietly-Friendly0";
     

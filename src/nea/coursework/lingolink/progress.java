@@ -4,19 +4,53 @@
  */
 package nea.coursework.lingolink;
 
+import javax.swing.JOptionPane;
+import com.LingoLink.dao.QuestionDAO;
+
 /**
  *
  * @author 4-narghirov
  */
 public class progress extends javax.swing.JPanel {
-    private final loginScreen loginPanel; 
+
+    private final loginScreen loginPanel;
+    private int selectedLanguageId = 1;
+    private String selectedLanguageName = "Selected Language";
 
     public progress(loginScreen login) {
         this.loginPanel = login;
         initComponents();
+        updateLanguageLabel();
+    }
+
+    public void setSelectedLanguage(int languageId, String languageName) {
+        this.selectedLanguageId = languageId;
+        this.selectedLanguageName = languageName;
+        updateLanguageLabel();
+    }
+
+    private void updateLanguageLabel() {
+        jLabel1.setText(selectedLanguageName);
+    }
+
+    private void startUnitTest(int unitId) {
+        try {
+            // Get the unitTest panel directly
+            unitTest testPanel = (unitTest) loginPanel.findPanel("unitTest");
+
+            if (testPanel != null) {
+                // Pass unit ID to the test panel
+                testPanel.setUnitId(unitId);
+
+                // Show the test panel
+                loginPanel.showPanel("unitTest");
+            }
+        } catch (Exception e) {
+            // Simple error handling
+            System.err.println("Error: " + e.getMessage());
+        }
     }
     // ... other methods and generated code
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -486,17 +520,17 @@ public class progress extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        loginPanel.showPanel("unitTest");
+        startUnitTest(2);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        loginPanel.showPanel("unitTest");
+        startUnitTest(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        loginPanel.showPanel("unitTest");
+        startUnitTest(5);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -506,12 +540,12 @@ public class progress extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        loginPanel.showPanel("unitTest");
+        startUnitTest(3);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        loginPanel.showPanel("unitTest");
+        startUnitTest(4);
     }//GEN-LAST:event_jButton4ActionPerformed
 
 

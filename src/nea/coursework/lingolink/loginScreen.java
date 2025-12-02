@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package nea.coursework.lingolink;
-
+//Good boy
+import com.LingoLink.dao.UserDAO;
 import java.awt.CardLayout;
 import java.util.HashMap;
 import java.util.Map;
@@ -310,7 +311,9 @@ public class loginScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        showPanel("mainMenu");
+        if(UserDAO.authentication(jTextField1.getText(), jPasswordField1.getText())){
+            showPanel("mainMenu");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -4,11 +4,16 @@
  */
 package nea.coursework.lingolink;
 
+import com.LingoLink.dao.Question;
+import com.LingoLink.dao.QuestionDAO;
+import java.util.List;
+
 /**
  *
  * @author 4-narghirov
  */
 public class unitTest extends javax.swing.JPanel {
+
     private final loginScreen loginPanel;
 
     /**
@@ -17,6 +22,20 @@ public class unitTest extends javax.swing.JPanel {
     public unitTest(loginScreen login) {
         initComponents();
         this.loginPanel = login;
+    }
+
+    private int currentUnitId = -1;
+    private QuestionDAO questionDAO = new QuestionDAO();
+    private List<Question> currentQuestions;
+
+    public void setUnitId(int unitId) {
+        this.currentUnitId = unitId;
+
+        // Simple implementation - just update the title for now
+        jLabel1.setText("Unit " + unitId + " Test");
+
+        // You can add more logic here later
+        // loadQuestionsForUnit(); // Don't call this yet if it's not implemented
     }
 
     /**
@@ -38,9 +57,10 @@ public class unitTest extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        QuestionField = new javax.swing.JTextPane();
+        AnswerField = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
 
@@ -167,6 +187,11 @@ public class unitTest extends javax.swing.JPanel {
         jButton2.setText("Next question");
         jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         jButton2.setPreferredSize(new java.awt.Dimension(0, 0));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -174,18 +199,6 @@ public class unitTest extends javax.swing.JPanel {
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jButton2, gridBagConstraints);
-
-        jButton3.setBackground(new java.awt.Color(242, 242, 242));
-        jButton3.setText("Previous");
-        jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jButton3.setPreferredSize(new java.awt.Dimension(0, 0));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jButton3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -201,9 +214,30 @@ public class unitTest extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel3.setText("[Question]");
-        jPanel5.add(jLabel3, new java.awt.GridBagConstraints());
+        jScrollPane1.setViewportView(QuestionField);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(jScrollPane1, gridBagConstraints);
+
+        AnswerField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AnswerField.setText("Enter answer");
+        AnswerField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnswerFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(AnswerField, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -265,14 +299,22 @@ public class unitTest extends javax.swing.JPanel {
         loginPanel.showPanel("progress");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void AnswerFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnswerFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AnswerFieldActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AnswerField;
+    private javax.swing.JTextPane QuestionField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -281,5 +323,10 @@ public class unitTest extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void loadQuestionsForUnit() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
