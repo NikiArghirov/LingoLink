@@ -108,7 +108,7 @@ public class unitTest extends javax.swing.JPanel {
         );
         
         if (isCorrect) {
-            score++; // Fixed typo: "scor" should be "score"
+            score++; 
         }
         
         // Move to next question
@@ -412,6 +412,8 @@ private void showTestSummary() {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         loginPanel.showPanel("progress");
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void AnswerFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnswerFieldActionPerformed

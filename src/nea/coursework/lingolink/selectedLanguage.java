@@ -15,7 +15,7 @@ public class selectedLanguage extends javax.swing.JPanel {
      * Creates new form selectedLanguage
      */
     private final loginScreen loginPanel;
-    
+
     public selectedLanguage(loginScreen language) {
         this.loginPanel = language;
         initComponents();
