@@ -138,7 +138,7 @@ public class loginScreen extends javax.swing.JFrame {
         jPanel5.add(jButton2, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 70)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(61, 253, 221));
+        jLabel1.setForeground(new java.awt.Color(2, 136, 113));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LingoLink");
         jLabel1.setPreferredSize(new java.awt.Dimension(0, 0));

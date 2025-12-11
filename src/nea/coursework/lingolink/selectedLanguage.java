@@ -100,7 +100,7 @@ public class selectedLanguage extends javax.swing.JPanel {
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(61, 253, 221));
+        jLabel1.setForeground(new java.awt.Color(2, 136, 113));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("[Selected Languge]");
         jLabel1.setPreferredSize(new java.awt.Dimension(0, 0));
