@@ -103,6 +103,11 @@ public class mainMenu extends javax.swing.JPanel {
         leaderBoard.setText("Leaderboard");
         leaderBoard.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         leaderBoard.setPreferredSize(new java.awt.Dimension(0, 0));
+        leaderBoard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leaderBoardActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -222,6 +227,11 @@ public class mainMenu extends javax.swing.JPanel {
         // TODO add your handling code here:
         login.showPanel("selectedLanguage");
     }//GEN-LAST:event_languageSelectionActionPerformed
+
+    private void leaderBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaderBoardActionPerformed
+        // TODO add your handling code here:
+        login.showPanel("Leaderboard");
+    }//GEN-LAST:event_leaderBoardActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
