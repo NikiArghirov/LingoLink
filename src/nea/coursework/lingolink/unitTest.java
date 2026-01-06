@@ -4,6 +4,7 @@
  */
 package nea.coursework.lingolink;
 
+import com.LingoLink.dao.ProgressDAO;
 import com.LingoLink.dao.Question;
 import com.LingoLink.dao.QuestionDAO;
 import java.util.List;
@@ -22,9 +23,16 @@ public class unitTest extends javax.swing.JPanel {
     public unitTest(loginScreen login) {
         initComponents();
         this.loginPanel = login;
+        ProgressDAO progressDAO = new ProgressDAO();
+        if (!progressDAO.checkProgressTableExists()) {
+            System.out.println("Progress table doesn't exist, creating it...");
+            progressDAO.createProgressTableIfNotExists();
+        }
     }
 
     private int currentUnitId = -1;
+    private int currentUserId = 1;
+    private ProgressDAO progressDAO = new ProgressDAO();
     private QuestionDAO questionDAO = new QuestionDAO();
     private List<Question> currentQuestions;
     private int currentQuestionIndex = 0;
@@ -32,18 +40,19 @@ public class unitTest extends javax.swing.JPanel {
     private int totalQuestions = 0;
     private String unitName = "";
 
-    public void setUnitId(int unitId) {
+    public void setUnitId(int unitId, int userId) {
         this.currentUnitId = unitId;
+        this.currentUserId = userId;
         this.currentQuestionIndex = 0;
         this.score = 0;
         this.unitName = questionDAO.getUnitNameById(unitId);
-        
+
         // Update the title with unit name
         jLabel1.setText(unitName + " Test");
-        
+
         // Load questions for this unit
         loadQuestionsForUnit();
-        
+
         // Display the first question
         displayCurrentQuestion();
     }
@@ -52,7 +61,7 @@ public class unitTest extends javax.swing.JPanel {
         try {
             // Use the getQuestionsByUnitId method from your QuestionDAO
             currentQuestions = questionDAO.getQuestionsByUnitId(currentUnitId);
-            
+
             if (currentQuestions != null && !currentQuestions.isEmpty()) {
                 totalQuestions = currentQuestions.size();
                 AnswerField.setText(""); // Clear previous answer
@@ -76,14 +85,14 @@ public class unitTest extends javax.swing.JPanel {
     private void displayCurrentQuestion() {
         if (currentQuestions != null && currentQuestionIndex < currentQuestions.size()) {
             Question currentQuestion = currentQuestions.get(currentQuestionIndex);
-            
+
             // Display the question text
             QuestionField.setText(currentQuestion.getText());
-            
+
             // Clear the answer field and set placeholder
             AnswerField.setText("");
             AnswerField.setEnabled(true);
-            
+
             // Update button text if it's the last question
             if (currentQuestionIndex == currentQuestions.size() - 1) {
                 jButton2.setText("Finish Test");
@@ -97,59 +106,88 @@ public class unitTest extends javax.swing.JPanel {
     }
 
     private void checkAnswerAndMoveNext() {
-    if (currentQuestions != null && currentQuestionIndex < currentQuestions.size()) {
-        Question currentQuestion = currentQuestions.get(currentQuestionIndex);
-        String userAnswer = AnswerField.getText().trim();
-        
-        // Check if answer is correct using the QuestionDAO method
-        boolean isCorrect = questionDAO.checkAnswer(
-            currentQuestion.getQuestionId(), 
-            userAnswer
-        );
-        
-        if (isCorrect) {
-            score++; 
-        }
-        
-        // Move to next question
-        currentQuestionIndex++;
-        displayCurrentQuestion();
-    } else {
-        // No more questions, show summary
-        showTestSummary();
-    }
-}
+        if (currentQuestions != null && currentQuestionIndex < currentQuestions.size()) {
+            Question currentQuestion = currentQuestions.get(currentQuestionIndex);
+            String userAnswer = AnswerField.getText().trim();
 
-private void showTestSummary() {
-    try {
-        // Get the testSummary panel
-        testSummary summaryPanel = (testSummary) loginPanel.findPanel("testSummary");
-        
-        if (summaryPanel != null) {
-            // Show the summary panel
-            loginPanel.showPanel("testSummary");
+            // Check if answer is correct using the QuestionDAO method
+            boolean isCorrect = questionDAO.checkAnswer(
+                    currentQuestion.getQuestionId(),
+                    userAnswer
+            );
+
+            if (isCorrect) {
+                score++;
+            }
+
+            // Move to next question
+            currentQuestionIndex++;
+            displayCurrentQuestion();
         } else {
-            // Fallback if testSummary panel not found
-            QuestionField.setText("Test completed!\n\n" +
-                                 "Unit: " + unitName + "\n" +
-                                 "Score: " + score + "/" + totalQuestions + "\n" +
-                                 "Percentage: " + calculatePercentage() + "%");
-            AnswerField.setEnabled(false);
-            AnswerField.setText("Test completed!");
-            jButton2.setEnabled(false);
-            jButton2.setText("Test Completed");
+            // No more questions, show summary
+            showTestSummary();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-        // Fallback: show a simple message
-        QuestionField.setText("Test completed! Score: " + score + "/" + totalQuestions);
-        AnswerField.setEnabled(false);
-        jButton2.setEnabled(false);
     }
-}
-    
+
+    private void showTestSummary() {
+        try {
+            // Calculate percentage
+            int percentage = calculatePercentage();
+
+            // Save to database
+            boolean saved = progressDAO.saveHighestScore(currentUserId, currentUnitId, percentage);
+
+            System.out.println("=== Test Results ===");
+            System.out.println("User ID: " + currentUserId);
+            System.out.println("Unit ID: " + currentUnitId);
+            System.out.println("Unit Name: " + unitName);
+            System.out.println("Score: " + score + "/" + totalQuestions);
+            System.out.println("Percentage: " + percentage + "%");
+            System.out.println("Saved to database: " + (saved ? "Yes" : "No"));
+
+            // Check previous score
+            int previousScore = progressDAO.getProgressScore(currentUserId, currentUnitId);
+            if (previousScore != -1) {
+                System.out.println("Previous best: " + previousScore + "%");
+            }
+
+            // Get the testSummary panel
+            testSummary summaryPanel = (testSummary) loginPanel.findPanel("testSummary");
+
+            if (summaryPanel != null) {
+                // Pass results to summary panel
+                summaryPanel.setTestResults(score, totalQuestions, unitName);
+
+                // Show the summary panel
+                loginPanel.showPanel("testSummary");
+            } else {
+                // Fallback if testSummary panel not found
+                String savedText = saved ? "✓ Saved to database"
+                        : (previousScore >= percentage ? "ℹ Score not saved (previous score was higher)" : "✗ Not saved");
+
+                QuestionField.setText("Test completed!\n\n"
+                        + "Unit: " + unitName + "\n"
+                        + "Score: " + score + "/" + totalQuestions + "\n"
+                        + "Percentage: " + percentage + "%\n\n"
+                        + savedText);
+                AnswerField.setEnabled(false);
+                AnswerField.setText("Test completed!");
+                jButton2.setEnabled(false);
+                jButton2.setText("Test Completed");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Fallback: show a simple message
+            QuestionField.setText("Test completed! Score: " + score + "/" + totalQuestions);
+            AnswerField.setEnabled(false);
+            jButton2.setEnabled(false);
+        }
+    }
+
     private int calculatePercentage() {
-        if (totalQuestions == 0) return 0;
+        if (totalQuestions == 0) {
+            return 0;
+        }
         return (int) Math.round((score * 100.0) / totalQuestions);
     }
 
@@ -442,6 +480,5 @@ private void showTestSummary() {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
 
 }

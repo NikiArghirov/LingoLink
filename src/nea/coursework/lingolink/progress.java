@@ -13,6 +13,7 @@ import com.LingoLink.dao.QuestionDAO;
  */
 public class progress extends javax.swing.JPanel {
 
+    private int currentUserId = 1;
     private final loginScreen loginPanel;
     private int selectedLanguageId = 1;
     private String selectedLanguageName = "Selected Language";
@@ -40,14 +41,15 @@ public class progress extends javax.swing.JPanel {
 
             if (testPanel != null) {
                 // Pass unit ID to the test panel
-                testPanel.setUnitId(unitId);
+                testPanel.setUnitId(unitId, currentUserId);
 
                 // Show the test panel
                 loginPanel.showPanel("unitTest");
             }
         } catch (Exception e) {
             // Simple error handling
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Error starting unit test: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     // ... other methods and generated code
