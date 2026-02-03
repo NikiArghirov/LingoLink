@@ -4,55 +4,105 @@
  */
 package nea.coursework.lingolink;
 
+import com.LingoLink.dao.MistakesDAO;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.util.List;
 import javax.swing.JPanel;
 
-/**
- *
- * @author nikia
- */
 public class Mistakes extends javax.swing.JPanel {
-    private final loginScreen loginPanel; 
+
+    private final loginScreen loginPanel;
+    private MistakesDAO mistakesDAO = new MistakesDAO();
 
     public Mistakes(loginScreen login) {
         this.loginPanel = login;
         initComponents();
+        loadMistakesFromDatabase();
     }
-    /**
-     * Creates new form Mistakes
-     */
-  
-    private void removeChildren(JPanel parent){
-        for (Component child : parent.getComponents()){
+
+    private void removeChildren(JPanel parent) {
+        for (Component child : parent.getComponents()) {
             parent.remove(child);
         }
     }
-    
-    public void loadMistakes (List<String> usersMistakes){
-        for (String mistake: usersMistakes){
-            showAnswers answers = new showAnswers();
-            
-            answers.setName(mistake);
-            answers.setMistake(mistake);
-            
-            int total = mistakePanel.getComponentCount();
-            
-            GridBagConstraints gridconstraint = (GridBagConstraints) new GridBagConstraints();
-            gridconstraint.gridx = 0;            
-            gridconstraint.fill = GridBagConstraints.BOTH;
-            gridconstraint.gridy = total;
-            gridconstraint.weightx = 1;
-            gridconstraint.weighty = 1;
-            
-            mistakePanel.add(answers,gridconstraint);
-            mistakePanel.repaint();
-            mistakePanel.revalidate();
+
+    public void loadMistakesFromDatabase() {
+        javax.swing.JPanel viewportPanel = (javax.swing.JPanel) MistakePane.getViewport().getView();
+        if (viewportPanel == null) {
+            viewportPanel = new javax.swing.JPanel();
+            viewportPanel.setLayout(new java.awt.GridBagLayout());
+            MistakePane.setViewportView(viewportPanel);
         }
+
+        removeChildren(viewportPanel);
+
+        int userId = loginPanel.getCurrentUserId();
+
+        if (userId <= 0) {
+            System.out.println("No user logged in.");
+
+            showAnswers message = new showAnswers();
+            message.setMistake("Please log in to view your mistakes");
+            message.setPreferredSize(new java.awt.Dimension(0, 80));
+
+            GridBagConstraints gridconstraint = new GridBagConstraints();
+            gridconstraint.gridx = 0;
+            gridconstraint.fill = GridBagConstraints.BOTH;
+            gridconstraint.gridy = 0;
+            gridconstraint.weightx = 1;
+            gridconstraint.weighty = 0;
+            gridconstraint.ipady = 80;
+
+            viewportPanel.add(message, gridconstraint);
+            viewportPanel.revalidate();
+            return;
+        }
+
+        List<String> mistakes = mistakesDAO.getUserMistakes(userId);
+
+        if (mistakes.isEmpty()) {
+            showAnswers message = new showAnswers();
+            message.setMistake("No mistakes found! Great job!");
+            message.setPreferredSize(new java.awt.Dimension(0, 80));
+
+            GridBagConstraints gridconstraint = new GridBagConstraints();
+            gridconstraint.gridx = 0;
+            gridconstraint.fill = GridBagConstraints.BOTH;
+            gridconstraint.gridy = 0;
+            gridconstraint.weightx = 1;
+            gridconstraint.weighty = 0;
+            gridconstraint.ipady = 80;
+
+            viewportPanel.add(message, gridconstraint);
+        } else {
+            for (int i = 0; i < mistakes.size(); i++) {
+                String mistake = mistakes.get(i);
+                showAnswers answers = new showAnswers();
+
+                answers.setName("mistake_" + i);
+                answers.setMistake(mistake);
+                answers.setPreferredSize(new java.awt.Dimension(0, 80));
+
+                GridBagConstraints gridconstraint = new GridBagConstraints();
+                gridconstraint.gridx = 0;
+                gridconstraint.fill = GridBagConstraints.BOTH;
+                gridconstraint.gridy = i;
+                gridconstraint.weightx = 1;
+                gridconstraint.weighty = 0;
+                gridconstraint.ipady = 80;
+
+                viewportPanel.add(answers, gridconstraint);
+            }
+        }
+
+        viewportPanel.revalidate();
+        viewportPanel.repaint();
+
+        int count = mistakesDAO.getMistakeCount(userId);
+        jLabel2.setText("Mistakes (" + count + ")");
     }
-            
-            
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,9 +119,12 @@ public class Mistakes extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         mistakePanel = new javax.swing.JPanel();
+        MistakePane = new javax.swing.JScrollPane();
         jPanel7 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
+        clearButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setLayout(new java.awt.GridBagLayout());
@@ -152,6 +205,16 @@ public class Mistakes extends javax.swing.JPanel {
         mistakePanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         mistakePanel.setPreferredSize(new java.awt.Dimension(0, 0));
         mistakePanel.setLayout(new java.awt.GridBagLayout());
+
+        MistakePane.setBackground(new java.awt.Color(242, 242, 242));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mistakePanel.add(MistakePane, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -203,17 +266,39 @@ public class Mistakes extends javax.swing.JPanel {
 
         jPanel8.setBackground(new java.awt.Color(193, 230, 223));
         jPanel8.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanel8.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 69, Short.MAX_VALUE)
-        );
+        clearButton.setBackground(new java.awt.Color(242, 242, 242));
+        clearButton.setText("Clear");
+        clearButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(clearButton, gridBagConstraints);
+
+        refreshButton.setBackground(new java.awt.Color(242, 242, 242));
+        refreshButton.setText("Refresh");
+        refreshButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(refreshButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -256,8 +341,42 @@ public class Mistakes extends javax.swing.JPanel {
         loginPanel.showPanel("selectedLanguage");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        // TODO add your handling code here:
+        int userId = loginPanel.getCurrentUserId();
+        if (userId > 0) {
+            int response = javax.swing.JOptionPane.showConfirmDialog(this,
+                    "Are you sure you want to clear all your mistakes?",
+                    "Clear Mistakes",
+                    javax.swing.JOptionPane.YES_NO_OPTION);
+
+            if (response == javax.swing.JOptionPane.YES_OPTION) {
+                boolean cleared = mistakesDAO.clearUserMistakes(userId);
+                if (cleared) {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                            "All mistakes cleared!",
+                            "Success",
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    loadMistakesFromDatabase();
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Please log in to clear mistakes",
+                    "Not Logged In",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        // TODO add your handling code here:
+        loadMistakesFromDatabase();
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane MistakePane;
+    private javax.swing.JButton clearButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -268,5 +387,6 @@ public class Mistakes extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel mistakePanel;
+    private javax.swing.JButton refreshButton;
     // End of variables declaration//GEN-END:variables
 }

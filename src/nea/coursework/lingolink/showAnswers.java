@@ -4,6 +4,8 @@
  */
 package nea.coursework.lingolink;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nikia
@@ -17,8 +19,19 @@ public class showAnswers extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void setMistake (String text){
-        mistakeLabel.setText(text);
+    public void setMistake(String text) {
+        mistakeLabel.setText("<html>" + text.replace("|", "<br>") + "</html>");
+    }
+    
+    
+    private void mistakeLabelMouseClicked(java.awt.event.MouseEvent evt) {                                         
+        if (evt.getClickCount() == 2) { 
+            String fullText = mistakeLabel.getText().replace("<html>", "").replace("</html>", "").replace("<br>", "\n");
+            JOptionPane.showMessageDialog(this, 
+                fullText, 
+                "Mistake Details", 
+                JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     
     /**
@@ -31,31 +44,12 @@ public class showAnswers extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        answerlabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         mistakeLabel = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBackground(new java.awt.Color(111, 232, 183));
-        jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        answerlabel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        answerlabel.setText("Show Answer");
-        jPanel1.add(answerlabel, new java.awt.GridBagConstraints());
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 1.0;
-        add(jPanel1, gridBagConstraints);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
@@ -75,8 +69,6 @@ public class showAnswers extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel answerlabel;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel mistakeLabel;
     // End of variables declaration//GEN-END:variables
