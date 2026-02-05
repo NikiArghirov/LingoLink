@@ -131,6 +131,11 @@ public class mainMenu extends javax.swing.JPanel {
         profile.setText("Profile");
         profile.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         profile.setPreferredSize(new java.awt.Dimension(0, 0));
+        profile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -232,6 +237,11 @@ public class mainMenu extends javax.swing.JPanel {
         // TODO add your handling code here:
         login.showPanel("Leaderboard");
     }//GEN-LAST:event_leaderBoardActionPerformed
+
+    private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
+        // TODO add your handling code here:
+        login.showPanel("Profile");
+    }//GEN-LAST:event_profileActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

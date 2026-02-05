@@ -43,6 +43,8 @@ public class loginScreen extends javax.swing.JFrame {
         panels.put("unitTest", new unitTest(this));
         panels.put("Leaderboard", new Leaderboard(this));
         panels.put("Register", new Register(this));
+        panels.put("Profile", new Profile (this));
+        panels.put("Settings", new Profile (this));
 
         for (Map.Entry<String, JPanel> entry : panels.entrySet()) {
             getContentPane().add(entry.getValue(), entry.getKey());

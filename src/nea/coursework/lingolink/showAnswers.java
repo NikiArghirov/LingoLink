@@ -49,6 +49,7 @@ public class showAnswers extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel2.setLayout(new java.awt.GridBagLayout());

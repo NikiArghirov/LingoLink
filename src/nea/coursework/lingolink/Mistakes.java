@@ -206,7 +206,7 @@ public class Mistakes extends javax.swing.JPanel {
         mistakePanel.setPreferredSize(new java.awt.Dimension(0, 0));
         mistakePanel.setLayout(new java.awt.GridBagLayout());
 
-        MistakePane.setBackground(new java.awt.Color(242, 242, 242));
+        MistakePane.setBackground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -246,7 +246,6 @@ public class Mistakes extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.5;
         jPanel2.add(jPanel7, gridBagConstraints);
 
-        jButton1.setBackground(new java.awt.Color(242, 242, 242));
         jButton1.setText("Return");
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         jButton1.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -268,7 +267,6 @@ public class Mistakes extends javax.swing.JPanel {
         jPanel8.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
-        clearButton.setBackground(new java.awt.Color(242, 242, 242));
         clearButton.setText("Clear");
         clearButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         clearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -284,7 +282,6 @@ public class Mistakes extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         jPanel8.add(clearButton, gridBagConstraints);
 
-        refreshButton.setBackground(new java.awt.Color(242, 242, 242));
         refreshButton.setText("Refresh");
         refreshButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
