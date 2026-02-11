@@ -17,7 +17,7 @@ public class HasherFunction {
         return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt(12));
     }
     
-    //public static boolean verifyPass(String plainTestPassword, String ){
-        //return BCrypt.checkpw(plainTextPassword, );
-    //}
+    public static boolean verifyPass(String plainTextPassword, String hashedPassword) {
+        return BCrypt.checkpw(plainTextPassword, hashedPassword);
+    }
 }
