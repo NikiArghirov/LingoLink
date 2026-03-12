@@ -4,20 +4,87 @@
  */
 package nea.coursework.lingolink;
 
+import com.LingoLink.dao.LeaderboardDAO;
+import com.LingoLink.dao.LeaderboardEntry;
+import java.util.List;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author 4-narghirov
  */
 public class Leaderboard extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Leaderboard
-     */
     private final loginScreen loginPanel;
+    private LeaderboardDAO leaderboardDAO;
+    private DefaultListModel<String> listModel;
 
     public Leaderboard(loginScreen leaderboard) {
         this.loginPanel = leaderboard;
+        this.leaderboardDAO = new LeaderboardDAO();
+        this.listModel = new DefaultListModel<>();
+
         initComponents();
+        loadLeaderboard();
+    }
+
+    private void loadLeaderboard() {
+        listModel.clear();
+
+        List<LeaderboardEntry> leaderboard = leaderboardDAO.getLeaderboard();
+
+        if (leaderboard.isEmpty()) {
+            listModel.addElement("No data available yet");
+            listModel.addElement("Complete some unit tests to appear!");
+        } else {
+            listModel.addElement("══════════════════════════════════");
+            listModel.addElement("     LEADERBOARD - UNITS COMPLETED");
+            listModel.addElement("══════════════════════════════════");
+            listModel.addElement("");
+
+            for (LeaderboardEntry entry : leaderboard) {
+                listModel.addElement(entry.getDisplayText());
+            }
+
+            listModel.addElement("");
+            listModel.addElement("══════════════════════════════════");
+
+            int currentUserId = loginPanel.getCurrentUserId();
+            if (currentUserId > 0) {
+                int userRank = leaderboardDAO.getUserRank(currentUserId);
+                if (userRank > 0) {
+                    listModel.addElement("");
+                    listModel.addElement("Your Rank: " + userRank + " of "
+                            + leaderboardDAO.getTotalUsers() + " users");
+                }
+            }
+        }
+
+        leaderboardList.setModel(listModel);
+    }
+
+    private void loadDetailedLeaderboard() {
+        listModel.clear();
+
+        List<LeaderboardEntry> leaderboard = leaderboardDAO.getLeaderboardWithDetails();
+
+        if (leaderboard.isEmpty()) {
+            listModel.addElement("No data available yet");
+        } else {
+            listModel.addElement("══════════════════════════════════════════");
+            listModel.addElement("        DETAILED LEADERBOARD");
+            listModel.addElement("══════════════════════════════════════════");
+            listModel.addElement("");
+
+            for (LeaderboardEntry entry : leaderboard) {
+                listModel.addElement(entry.getDetailedDisplayText());
+            }
+
+            listModel.addElement("");
+            listModel.addElement("══════════════════════════════════════════");
+        }
+
+        leaderboardList.setModel(listModel);
     }
 
     /**
@@ -31,11 +98,16 @@ public class Leaderboard extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        JPanel1 = new javax.swing.JPanel();
+        leaderboardBox = new javax.swing.JScrollPane();
+        leaderboardList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        Detailed = new javax.swing.JButton();
+        Refresh = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(193, 230, 223));
@@ -58,20 +130,26 @@ public class Leaderboard extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.4;
         add(jButton1, gridBagConstraints);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
+        JPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        JPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        JPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
+        JPanel1.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 419, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 273, Short.MAX_VALUE)
-        );
+        leaderboardList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        leaderboardList.setPreferredSize(new java.awt.Dimension(0, 0));
+        leaderboardBox.setViewportView(leaderboardList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        JPanel1.add(leaderboardBox, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -80,7 +158,7 @@ public class Leaderboard extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.5;
         gridBagConstraints.weighty = 1.0;
-        add(jPanel1, gridBagConstraints);
+        add(JPanel1, gridBagConstraints);
 
         jLabel1.setBackground(new java.awt.Color(193, 230, 223));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
@@ -142,17 +220,56 @@ public class Leaderboard extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(193, 230, 223));
         jPanel4.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 701, Short.MAX_VALUE)
+        jPanel1.setBackground(new java.awt.Color(193, 230, 223));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(jPanel1, gridBagConstraints);
+
+        Detailed.setText("Detailed");
+        Detailed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DetailedActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(Detailed, gridBagConstraints);
+
+        Refresh.setText("Refresh");
+        Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(Refresh, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -192,8 +309,21 @@ public class Leaderboard extends javax.swing.JPanel {
         loginPanel.showPanel("mainMenu");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+        // TODO add your handling code here:
+        loadLeaderboard();
+    }//GEN-LAST:event_RefreshActionPerformed
+
+    private void DetailedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetailedActionPerformed
+        // TODO add your handling code here:
+        loadDetailedLeaderboard();
+    }//GEN-LAST:event_DetailedActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Detailed;
+    private javax.swing.JPanel JPanel1;
+    private javax.swing.JButton Refresh;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -201,5 +331,7 @@ public class Leaderboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane leaderboardBox;
+    private javax.swing.JList<String> leaderboardList;
     // End of variables declaration//GEN-END:variables
 }
