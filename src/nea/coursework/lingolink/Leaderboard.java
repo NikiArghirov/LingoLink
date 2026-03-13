@@ -135,6 +135,7 @@ public class Leaderboard extends javax.swing.JPanel {
         JPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
         JPanel1.setLayout(new java.awt.GridBagLayout());
 
+        leaderboardList.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         leaderboardList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }

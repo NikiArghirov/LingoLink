@@ -408,10 +408,11 @@ public class loginScreen extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(loginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new loginScreen().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            loginScreen login = new loginScreen();
+            login.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+            login.setVisible(true);
+            
         });
     }
 
