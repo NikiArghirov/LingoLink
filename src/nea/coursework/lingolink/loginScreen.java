@@ -43,8 +43,8 @@ public class loginScreen extends javax.swing.JFrame {
         panels.put("unitTest", new unitTest(this));
         panels.put("Leaderboard", new Leaderboard(this));
         panels.put("Register", new Register(this));
-        panels.put("Profile", new Profile (this));
-        panels.put("Settings", new Profile (this));
+        panels.put("Profile", new Profile(this));
+        panels.put("Settings", new Profile(this));
 
         for (Map.Entry<String, JPanel> entry : panels.entrySet()) {
             getContentPane().add(entry.getValue(), entry.getKey());
@@ -61,29 +61,24 @@ public class loginScreen extends javax.swing.JFrame {
         return panels.get(name);
     }
 
- 
     public void setLoggedInUser(int userId, String username) {
         this.currentUserId = userId;
         this.currentUsername = username;
         System.out.println("User logged in: " + username + " (ID: " + userId + ")");
     }
 
-  
     public int getCurrentUserId() {
         return currentUserId;
     }
 
-    
     public String getCurrentUsername() {
         return currentUsername;
     }
 
-    
     public boolean isUserLoggedIn() {
         return currentUserId > 0;
     }
 
-  
     public void logout() {
         System.out.println("Logging out user: " + currentUsername + " (ID: " + currentUserId + ")");
         this.currentUserId = -1;
@@ -352,20 +347,18 @@ public class loginScreen extends javax.swing.JFrame {
         String username = jTextField1.getText();
         String password = jPasswordField1.getText();
 
-      
         if (UserDAO.authentication(username, password)) {
-          
+
             int userId = UserDAO.getUserIdByCredentials(username, password);
 
             if (userId > 0) {
-                
+
                 setLoggedInUser(userId, username);
                 System.out.println("Login successful for user: " + username + " (ID: " + userId + ")");
 
-             
                 showPanel("mainMenu");
             } else {
-               
+
                 System.out.println("Error: Authentication passed but couldn't get user ID");
                 javax.swing.JOptionPane.showMessageDialog(this,
                         "Login error: Could not retrieve user information",
@@ -373,7 +366,7 @@ public class loginScreen extends javax.swing.JFrame {
                         javax.swing.JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            
+
             System.out.println("Login failed for user: " + username);
             javax.swing.JOptionPane.showMessageDialog(this,
                     "Invalid username or password",
@@ -408,10 +401,10 @@ public class loginScreen extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(loginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new loginScreen().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            loginScreen login = new loginScreen();
+            login.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+            login.setVisible(true);
         });
     }
 

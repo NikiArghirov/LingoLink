@@ -4,20 +4,52 @@
  */
 package nea.coursework.lingolink;
 
+import com.LingoLink.dao.UserStats;
+import com.LingoLink.dao.UserStatsDAO;
+
 /**
  *
  * @author nikia
  */
 public class Profile extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Profile
-     */
     private final loginScreen loginPanel;
+    private UserStatsDAO userStatsDAO;
 
     public Profile(loginScreen Profile) {
         this.loginPanel = Profile;
+        this.userStatsDAO = new UserStatsDAO();
         initComponents();
+        setupButtonListener();
+        loadUserStats();
+    }
+
+    private void setupButtonListener() {
+        jButton2.setText("Refresh Stats");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+    }
+
+    private void loadUserStats() {
+        int userId = loginPanel.getCurrentUserId();
+
+        if (userId <= 0) {
+            jTextArea1.setText("⚠ Please log in to view your profile");
+            jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14));
+            return;
+        }
+
+        UserStats stats = userStatsDAO.getUserStats(userId);
+
+        if (stats != null) {
+            jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14));
+            jTextArea1.setText(stats.getFormattedStats());
+        } else {
+            jTextArea1.setText("⚠ Error loading user statistics");
+        }
     }
 
     /**
@@ -38,8 +70,8 @@ public class Profile extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
 
         setLayout(new java.awt.GridBagLayout());
@@ -122,37 +154,32 @@ public class Profile extends javax.swing.JPanel {
 
         jButton2.setText("User Progress");
         jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.3;
+        jPanel4.add(jButton2, gridBagConstraints);
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(0, 0));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jButton2, gridBagConstraints);
-
-        jPanel6.setBackground(new java.awt.Color(193, 230, 223));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jPanel6, gridBagConstraints);
-
-        jButton3.setText("Settings");
-        jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jButton3, gridBagConstraints);
+        jPanel4.add(jScrollPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -178,23 +205,24 @@ public class Profile extends javax.swing.JPanel {
         loginPanel.showPanel("mainMenu");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        loginPanel.showPanel("Settings");
-    }//GEN-LAST:event_jButton3ActionPerformed
+        loadUserStats();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
