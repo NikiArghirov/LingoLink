@@ -99,8 +99,8 @@ public class Register extends javax.swing.JPanel {
         Password2 = new javax.swing.JPasswordField();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        RegisterNew = new javax.swing.JButton();
+        ReturnLogin = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
 
         setLayout(new java.awt.GridBagLayout());
@@ -277,12 +277,12 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.1;
         jPanel5.add(jPanel8, gridBagConstraints);
 
-        jButton1.setBackground(new java.awt.Color(56, 223, 139));
-        jButton1.setText("Register New User");
-        jButton1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        RegisterNew.setBackground(new java.awt.Color(56, 223, 139));
+        RegisterNew.setText("Register New User");
+        RegisterNew.setPreferredSize(new java.awt.Dimension(0, 0));
+        RegisterNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RegisterNewActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -291,13 +291,13 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.2;
-        jPanel5.add(jButton1, gridBagConstraints);
+        jPanel5.add(RegisterNew, gridBagConstraints);
 
-        jButton2.setText("Return To Login");
-        jButton2.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ReturnLogin.setText("Return To Login");
+        ReturnLogin.setPreferredSize(new java.awt.Dimension(0, 0));
+        ReturnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ReturnLoginActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -306,7 +306,7 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.2;
-        jPanel5.add(jButton2, gridBagConstraints);
+        jPanel5.add(ReturnLogin, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -346,23 +346,23 @@ public class Register extends javax.swing.JPanel {
     
     }//GEN-LAST:event_UsernameActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ReturnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnLoginActionPerformed
         // TODO add your handling code here:
         login.showPanel("card2");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ReturnLoginActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void RegisterNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterNewActionPerformed
         // TODO add your handling code here:
            registerUser();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_RegisterNewActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField Password;
     private javax.swing.JPasswordField Password2;
+    private javax.swing.JButton RegisterNew;
+    private javax.swing.JButton ReturnLogin;
     private javax.swing.JTextField Username;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

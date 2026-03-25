@@ -56,7 +56,7 @@ public class unitTest extends javax.swing.JPanel {
         }
 
         this.unitName = questionDAO.getUnitNameById(unitId);
-        jLabel1.setText(unitName + " Test");
+        Test.setText(unitName + " Test");
         loadQuestionsForUnit();
         displayCurrentQuestion();
     }
@@ -67,7 +67,7 @@ public class unitTest extends javax.swing.JPanel {
         this.currentQuestionIndex = 0;
         this.score = 0;
         this.unitName = questionDAO.getUnitNameById(unitId);
-        jLabel1.setText(unitName + " Test");
+        Test.setText(unitName + " Test");
         loadQuestionsForUnit();
         displayCurrentQuestion();
     }
@@ -84,7 +84,7 @@ public class unitTest extends javax.swing.JPanel {
                 QuestionField.setText("No questions available for this unit.");
                 AnswerField.setEnabled(false);
                 AnswerField.setText("No questions available");
-                jButton2.setText("Finish Test");
+                NextQuestion.setText("Finish Test");
                 totalQuestions = 0;
                 System.out.println("No questions found for Unit " + currentUnitId);
             }
@@ -92,7 +92,7 @@ public class unitTest extends javax.swing.JPanel {
             e.printStackTrace();
             QuestionField.setText("Error loading questions: " + e.getMessage());
             AnswerField.setEnabled(false);
-            jButton2.setEnabled(false);
+            NextQuestion.setEnabled(false);
         }
     }
 
@@ -104,10 +104,10 @@ public class unitTest extends javax.swing.JPanel {
             AnswerField.setEnabled(true);
 
             if (currentQuestionIndex == currentQuestions.size() - 1) {
-                jButton2.setText("Finish Test");
+                NextQuestion.setText("Finish Test");
                 System.out.println("Displaying last question #" + (currentQuestionIndex + 1));
             } else {
-                jButton2.setText("Next question");
+                NextQuestion.setText("Next question");
                 System.out.println("Displaying question #" + (currentQuestionIndex + 1) + " of " + totalQuestions);
             }
         } else {
@@ -209,14 +209,14 @@ public class unitTest extends javax.swing.JPanel {
                         + savedText);
                 AnswerField.setEnabled(false);
                 AnswerField.setText("Test completed!");
-                jButton2.setEnabled(false);
-                jButton2.setText("Test Completed");
+                NextQuestion.setEnabled(false);
+                NextQuestion.setText("Test Completed");
             }
         } catch (Exception e) {
             e.printStackTrace();
             QuestionField.setText("Test completed! Score: " + score + "/" + totalQuestions);
             AnswerField.setEnabled(false);
-            jButton2.setEnabled(false);
+            NextQuestion.setEnabled(false);
         }
     }
 
@@ -243,14 +243,14 @@ public class unitTest extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        QuitTest = new javax.swing.JButton();
+        Test = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        NextQuestion = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         QuestionField = new javax.swing.JTextPane();
@@ -264,40 +264,40 @@ public class unitTest extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setBackground(new java.awt.Color(242, 242, 242));
-        jButton1.setText("Quit test");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jButton1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        QuitTest.setBackground(new java.awt.Color(242, 242, 242));
+        QuitTest.setText("Quit test");
+        QuitTest.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        QuitTest.setPreferredSize(new java.awt.Dimension(0, 0));
+        QuitTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                QuitTestActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton1, gridBagConstraints);
+        jPanel1.add(QuitTest, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Unit Test");
-        jLabel1.setPreferredSize(new java.awt.Dimension(0, 0));
+        Test.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        Test.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Test.setText("Unit Test");
+        Test.setPreferredSize(new java.awt.Dimension(0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jLabel1, gridBagConstraints);
+        jPanel1.add(Test, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("[Logo]");
-        jLabel2.setPreferredSize(new java.awt.Dimension(0, 0));
+        logo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setText("[Logo]");
+        logo.setPreferredSize(new java.awt.Dimension(0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jLabel2, gridBagConstraints);
+        jPanel1.add(logo, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -377,13 +377,13 @@ public class unitTest extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jPanel7, gridBagConstraints);
 
-        jButton2.setBackground(new java.awt.Color(242, 242, 242));
-        jButton2.setText("Next question");
-        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jButton2.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        NextQuestion.setBackground(new java.awt.Color(242, 242, 242));
+        NextQuestion.setText("Next question");
+        NextQuestion.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        NextQuestion.setPreferredSize(new java.awt.Dimension(0, 0));
+        NextQuestion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                NextQuestionActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -392,7 +392,7 @@ public class unitTest extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jButton2, gridBagConstraints);
+        jPanel4.add(NextQuestion, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -489,29 +489,28 @@ public class unitTest extends javax.swing.JPanel {
         add(jPanel8, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void QuitTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitTestActionPerformed
         // TODO add your handling code here:
         loginPanel.showPanel("progress");
-        jButton2.setEnabled(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        NextQuestion.setEnabled(true);
+    }//GEN-LAST:event_QuitTestActionPerformed
 
     private void AnswerFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnswerFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AnswerFieldActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void NextQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextQuestionActionPerformed
         // TODO add your handling code here:
         checkAnswerAndMoveNext();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_NextQuestionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AnswerField;
+    private javax.swing.JButton NextQuestion;
     private javax.swing.JTextPane QuestionField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton QuitTest;
+    private javax.swing.JLabel Test;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -521,6 +520,7 @@ public class unitTest extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
 
 }

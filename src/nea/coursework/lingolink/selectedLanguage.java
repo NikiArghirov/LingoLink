@@ -37,11 +37,11 @@ public class selectedLanguage extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        Progress = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        Mistakes = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        Home = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -135,12 +135,12 @@ public class selectedLanguage extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.1;
         jPanel2.add(jPanel4, gridBagConstraints);
 
-        jButton1.setText("Progress");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jButton1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Progress.setText("Progress");
+        Progress.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        Progress.setPreferredSize(new java.awt.Dimension(0, 0));
+        Progress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ProgressActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -150,7 +150,7 @@ public class selectedLanguage extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.2;
-        jPanel2.add(jButton1, gridBagConstraints);
+        jPanel2.add(Progress, gridBagConstraints);
 
         jPanel5.setBackground(new java.awt.Color(193, 230, 223));
 
@@ -174,12 +174,12 @@ public class selectedLanguage extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.1;
         jPanel2.add(jPanel5, gridBagConstraints);
 
-        jButton2.setText("Mistakes");
-        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jButton2.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Mistakes.setText("Mistakes");
+        Mistakes.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        Mistakes.setPreferredSize(new java.awt.Dimension(0, 0));
+        Mistakes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                MistakesActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -189,7 +189,7 @@ public class selectedLanguage extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.2;
-        jPanel2.add(jButton2, gridBagConstraints);
+        jPanel2.add(Mistakes, gridBagConstraints);
 
         jPanel6.setBackground(new java.awt.Color(193, 230, 223));
 
@@ -213,12 +213,12 @@ public class selectedLanguage extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.1;
         jPanel2.add(jPanel6, gridBagConstraints);
 
-        jButton3.setText("Home");
-        jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jButton3.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Home.setText("Home");
+        Home.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        Home.setPreferredSize(new java.awt.Dimension(0, 0));
+        Home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                HomeActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -227,7 +227,7 @@ public class selectedLanguage extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.2;
-        jPanel2.add(jButton3, gridBagConstraints);
+        jPanel2.add(Home, gridBagConstraints);
 
         jPanel7.setBackground(new java.awt.Color(193, 230, 223));
 
@@ -303,26 +303,26 @@ public class selectedLanguage extends javax.swing.JPanel {
         add(jPanel3, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
         loginPanel.showPanel("mainMenu");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_HomeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ProgressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgressActionPerformed
         // TODO add your handling code here:
         loginPanel.showPanel("progress");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ProgressActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void MistakesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MistakesActionPerformed
         // TODO add your handling code here:
         loginPanel.showPanel("Mistakes");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_MistakesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Mistakes;
+    private javax.swing.JButton Progress;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

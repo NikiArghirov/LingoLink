@@ -121,7 +121,7 @@ public class Mistakes extends javax.swing.JPanel {
         mistakePanel = new javax.swing.JPanel();
         MistakePane = new javax.swing.JScrollPane();
         jPanel7 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        Return = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         clearButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
@@ -246,12 +246,12 @@ public class Mistakes extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.5;
         jPanel2.add(jPanel7, gridBagConstraints);
 
-        jButton1.setText("Return");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jButton1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Return.setText("Return");
+        Return.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        Return.setPreferredSize(new java.awt.Dimension(0, 0));
+        Return.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ReturnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -261,7 +261,7 @@ public class Mistakes extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
-        jPanel2.add(jButton1, gridBagConstraints);
+        jPanel2.add(Return, gridBagConstraints);
 
         jPanel8.setBackground(new java.awt.Color(193, 230, 223));
         jPanel8.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -333,10 +333,10 @@ public class Mistakes extends javax.swing.JPanel {
         add(jPanel3, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
         // TODO add your handling code here:
         loginPanel.showPanel("selectedLanguage");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ReturnActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         // TODO add your handling code here:
@@ -373,8 +373,8 @@ public class Mistakes extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane MistakePane;
+    private javax.swing.JButton Return;
     private javax.swing.JButton clearButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -31,7 +31,7 @@ public class progress extends javax.swing.JPanel {
     }
 
     private void updateLanguageLabel() {
-        jLabel1.setText(selectedLanguageName);
+        selectedLanguage.setText(selectedLanguageName);
     }
 
     private void startUnitTest(int unitId) {
@@ -71,7 +71,7 @@ public class progress extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        Return = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -85,7 +85,7 @@ public class progress extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        selectedLanguage = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
 
         setLayout(new java.awt.GridBagLayout());
@@ -203,12 +203,12 @@ public class progress extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(jButton5, gridBagConstraints);
 
-        jButton6.setText("Return");
-        jButton6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jButton6.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        Return.setText("Return");
+        Return.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        Return.setPreferredSize(new java.awt.Dimension(0, 0));
+        Return.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                ReturnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -217,7 +217,7 @@ public class progress extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(jButton6, gridBagConstraints);
+        jPanel2.add(Return, gridBagConstraints);
 
         jPanel6.setBackground(new java.awt.Color(193, 230, 223));
 
@@ -481,15 +481,15 @@ public class progress extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         jPanel5.add(jPanel15, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("[Selected language]");
-        jLabel1.setPreferredSize(new java.awt.Dimension(0, 0));
+        selectedLanguage.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        selectedLanguage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedLanguage.setText("[Selected language]");
+        selectedLanguage.setPreferredSize(new java.awt.Dimension(0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel5.add(jLabel1, gridBagConstraints);
+        jPanel5.add(selectedLanguage, gridBagConstraints);
 
         jPanel16.setBackground(new java.awt.Color(193, 230, 223));
 
@@ -534,10 +534,10 @@ public class progress extends javax.swing.JPanel {
         startUnitTest(5);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
         // TODO add your handling code here:
         loginPanel.showPanel("selectedLanguage");
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_ReturnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -551,13 +551,12 @@ public class progress extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Return;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -574,6 +573,7 @@ public class progress extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel selectedLanguage;
     // End of variables declaration//GEN-END:variables
 
 }

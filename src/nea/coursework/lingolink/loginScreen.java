@@ -98,18 +98,18 @@ public class loginScreen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
+        Login = new javax.swing.JButton();
+        Register = new javax.swing.JButton();
+        AppName = new javax.swing.JLabel();
+        Password = new javax.swing.JPasswordField();
+        Username = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        Logo = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        PassLabel = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        UserLabel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,14 +134,14 @@ public class loginScreen extends javax.swing.JFrame {
         jPanel5.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setBackground(new java.awt.Color(56, 223, 139));
-        jButton1.setText("Login");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setBorderPainted(false);
-        jButton1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Login.setBackground(new java.awt.Color(56, 223, 139));
+        Login.setText("Login");
+        Login.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Login.setBorderPainted(false);
+        Login.setPreferredSize(new java.awt.Dimension(0, 0));
+        Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                LoginActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -151,14 +151,14 @@ public class loginScreen extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.2;
-        jPanel5.add(jButton1, gridBagConstraints);
+        jPanel5.add(Login, gridBagConstraints);
 
-        jButton2.setText("Register");
-        jButton2.setBorderPainted(false);
-        jButton2.setPreferredSize(new java.awt.Dimension(0, 0));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Register.setText("Register");
+        Register.setBorderPainted(false);
+        Register.setPreferredSize(new java.awt.Dimension(0, 0));
+        Register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                RegisterActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -168,13 +168,13 @@ public class loginScreen extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
-        jPanel5.add(jButton2, gridBagConstraints);
+        jPanel5.add(Register, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 70)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(2, 136, 113));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LingoLink");
-        jLabel1.setPreferredSize(new java.awt.Dimension(0, 0));
+        AppName.setFont(new java.awt.Font("Arial", 0, 70)); // NOI18N
+        AppName.setForeground(new java.awt.Color(2, 136, 113));
+        AppName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AppName.setText("LingoLink");
+        AppName.setPreferredSize(new java.awt.Dimension(0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -183,15 +183,15 @@ public class loginScreen extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.3;
-        jPanel5.add(jLabel1, gridBagConstraints);
+        jPanel5.add(AppName, gridBagConstraints);
 
-        jPasswordField1.setBackground(new java.awt.Color(239, 239, 239));
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPasswordField1.setAlignmentX(0.0F);
-        jPasswordField1.setAlignmentY(0.0F);
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jPasswordField1.setCaretColor(new java.awt.Color(255, 0, 0));
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(0, 0));
+        Password.setBackground(new java.awt.Color(239, 239, 239));
+        Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Password.setAlignmentX(0.0F);
+        Password.setAlignmentY(0.0F);
+        Password.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        Password.setCaretColor(new java.awt.Color(255, 0, 0));
+        Password.setPreferredSize(new java.awt.Dimension(0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -200,12 +200,17 @@ public class loginScreen extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.2;
-        jPanel5.add(jPasswordField1, gridBagConstraints);
+        jPanel5.add(Password, gridBagConstraints);
 
-        jTextField1.setBackground(new java.awt.Color(239, 239, 239));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jTextField1.setPreferredSize(new java.awt.Dimension(0, 0));
+        Username.setBackground(new java.awt.Color(239, 239, 239));
+        Username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Username.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        Username.setPreferredSize(new java.awt.Dimension(0, 0));
+        Username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsernameActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -214,7 +219,7 @@ public class loginScreen extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.2;
-        jPanel5.add(jTextField1, gridBagConstraints);
+        jPanel5.add(Username, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(193, 230, 223));
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -239,10 +244,10 @@ public class loginScreen extends javax.swing.JFrame {
         gridBagConstraints.weighty = 0.1;
         jPanel5.add(jPanel2, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("[Logo]");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Logo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        Logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Logo.setText("[Logo]");
+        Logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -250,7 +255,7 @@ public class loginScreen extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.2;
-        jPanel5.add(jLabel2, gridBagConstraints);
+        jPanel5.add(Logo, gridBagConstraints);
 
         jPanel3.setBackground(new java.awt.Color(193, 230, 223));
         jPanel3.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -279,13 +284,13 @@ public class loginScreen extends javax.swing.JFrame {
         jPanel7.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
-        jLabel4.setText("Password:");
+        PassLabel.setText("Password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel7.add(jLabel4, gridBagConstraints);
+        jPanel7.add(PassLabel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -300,13 +305,13 @@ public class loginScreen extends javax.swing.JFrame {
         jPanel8.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setText("Enter Username:");
+        UserLabel.setText("Enter Username:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel8.add(jLabel3, gridBagConstraints);
+        jPanel8.add(UserLabel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -337,15 +342,15 @@ public class loginScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
         // TODO add your handling code here:
         showPanel("Register");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_RegisterActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
         // TODO add your handling code here:
-        String username = jTextField1.getText();
-        String password = jPasswordField1.getText();
+        String username = Username.getText();
+        String password = Password.getText();
 
         if (UserDAO.authentication(username, password)) {
 
@@ -373,7 +378,11 @@ public class loginScreen extends javax.swing.JFrame {
                     "Login Failed",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_LoginActionPerformed
+
+    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -409,12 +418,14 @@ public class loginScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel AppName;
+    private javax.swing.JButton Login;
+    private javax.swing.JLabel Logo;
+    private javax.swing.JLabel PassLabel;
+    private javax.swing.JPasswordField Password;
+    private javax.swing.JButton Register;
+    private javax.swing.JLabel UserLabel;
+    private javax.swing.JTextField Username;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -423,7 +434,5 @@ public class loginScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
