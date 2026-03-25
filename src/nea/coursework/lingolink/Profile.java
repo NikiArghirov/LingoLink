@@ -25,8 +25,8 @@ public class Profile extends javax.swing.JPanel {
     }
 
     private void setupButtonListener() {
-        UserProgress.setText("Refresh Stats");
-        UserProgress.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Refresh Stats");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
@@ -65,11 +65,11 @@ public class Profile extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        REturn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        UserProgress = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
@@ -102,12 +102,12 @@ public class Profile extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jPanel7, gridBagConstraints);
 
-        REturn.setText("Return");
-        REturn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        REturn.setPreferredSize(new java.awt.Dimension(0, 0));
-        REturn.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Return");
+        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        jButton1.setPreferredSize(new java.awt.Dimension(0, 0));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                REturnActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -116,7 +116,7 @@ public class Profile extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(REturn, gridBagConstraints);
+        jPanel1.add(jButton1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -152,11 +152,11 @@ public class Profile extends javax.swing.JPanel {
         jPanel4.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        UserProgress.setText("User Progress");
-        UserProgress.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        UserProgress.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("User Progress");
+        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserProgressActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -165,7 +165,7 @@ public class Profile extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.3;
-        jPanel4.add(UserProgress, gridBagConstraints);
+        jPanel4.add(jButton2, gridBagConstraints);
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(0, 0));
 
@@ -200,21 +200,21 @@ public class Profile extends javax.swing.JPanel {
         add(jPanel5, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void REturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REturnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         loginPanel.showPanel("mainMenu");
-    }//GEN-LAST:event_REturnActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void UserProgressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserProgressActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         loadUserStats();
 
-    }//GEN-LAST:event_UserProgressActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton REturn;
-    private javax.swing.JButton UserProgress;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
