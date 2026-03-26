@@ -246,7 +246,7 @@ public class loginScreen extends javax.swing.JFrame {
 
         Logo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         Logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Logo.setText("[Logo]");
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nea/coursework/lingolink/Lingolin (1).jpg"))); // NOI18N
         Logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

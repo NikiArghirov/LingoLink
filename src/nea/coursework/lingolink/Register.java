@@ -134,7 +134,7 @@ public class Register extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("[Logo]");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nea/coursework/lingolink/Lingolin (1).jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -142,10 +142,10 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.weighty = 0.3;
         jPanel5.add(jLabel1, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 70)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(2, 136, 113));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("LingoLink");
