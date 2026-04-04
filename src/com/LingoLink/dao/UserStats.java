@@ -57,18 +57,18 @@ public class UserStats {
         sb.append("═══════════════════════════════════════\n");
         sb.append("           USER PROFILE\n");
         sb.append("═══════════════════════════════════════\n\n");
-        sb.append("📛 Username: ").append(username).append("\n");
-        sb.append("🌍 Language: ").append(getLanguageName()).append("\n\n");
+        sb.append("Username: ").append(username).append("\n");
+        sb.append("Language: ").append(getLanguageName()).append("\n\n");
         sb.append("═══════════════════════════════════════\n");
         sb.append("           TEST STATISTICS\n");
         sb.append("═══════════════════════════════════════\n\n");
-        sb.append("📊 Units Taken: ").append(totalUnitsTaken).append("\n");
-        sb.append("✅ Units Passed: ").append(unitsPassed).append("\n");
-        sb.append("📈 Pass Rate: ").append(String.format("%.1f", getPassRate())).append("%\n");
-        sb.append("⭐ Average Score: ").append(String.format("%.1f", averageScore)).append("%\n");
-        sb.append("🏆 Highest Score: ").append(highestScore).append("%\n");
-        sb.append("📉 Lowest Score: ").append(lowestScore).append("%\n");
-        sb.append("❌ Total Mistakes: ").append(totalMistakes).append("\n\n");
+        sb.append("Units Taken: ").append(totalUnitsTaken).append("\n");
+        sb.append("Units Passed: ").append(unitsPassed).append("\n");
+        sb.append(String.format("Pass Rate: %.1f%%\n", getPassRate()));
+        sb.append(String.format("Average Score: %.1f%%\n", averageScore));
+        sb.append("Highest Score: ").append(highestScore).append("%\n");
+        sb.append("Lowest Score: ").append(lowestScore).append("%\n");
+        sb.append("Total Mistakes: ").append(totalMistakes).append("\n\n");
         sb.append("═══════════════════════════════════════\n");
         
         if (unitsPassed >= 5) {

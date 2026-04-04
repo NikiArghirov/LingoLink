@@ -33,24 +33,25 @@ public class Profile extends javax.swing.JPanel {
         });
     }
 
-    private void loadUserStats() {
-        int userId = loginPanel.getCurrentUserId();
-
-        if (userId <= 0) {
-            jTextArea1.setText("⚠ Please log in to view your profile");
-            jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14));
-            return;
-        }
-
-        UserStats stats = userStatsDAO.getUserStats(userId);
-
-        if (stats != null) {
-            jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14));
-            jTextArea1.setText(stats.getFormattedStats());
-        } else {
-            jTextArea1.setText("⚠ Error loading user statistics");
-        }
+private void loadUserStats() {
+    int userId = loginPanel.getCurrentUserId();
+    
+    if (userId <= 0) {
+        jTextArea1.setText("⚠ Please log in to view your profile");
+        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14));
+        return;
     }
+    
+    // Use the alternative method which has cleaner counting
+    UserStats stats = userStatsDAO.getUserStatsAlternative(userId);
+    
+    if (stats != null) {
+        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14));
+        jTextArea1.setText(stats.getFormattedStats());
+    } else {
+        jTextArea1.setText("⚠ Error loading user statistics");
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

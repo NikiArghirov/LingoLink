@@ -195,7 +195,7 @@ public class mainMenu extends javax.swing.JPanel {
 
         logoPlaceHolder.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         logoPlaceHolder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoPlaceHolder.setText("[Logo]");
+        logoPlaceHolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nea/coursework/lingolink/Lingolin (1).jpg"))); // NOI18N
         logoPlaceHolder.setPreferredSize(new java.awt.Dimension(0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
