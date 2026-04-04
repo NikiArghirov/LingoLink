@@ -41,7 +41,7 @@ public class User {
         return languageId;
     }
     
-    // Setters (optional)
+    // Setters 
     public void setUserId(int userId) {
         this.userId = userId;
     }

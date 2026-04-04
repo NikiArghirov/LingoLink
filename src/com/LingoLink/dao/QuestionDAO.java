@@ -92,7 +92,7 @@ public class QuestionDAO {
         return question;
     }
     
-    // NEW METHOD: Get questions for a specific unit
+    // NEW Get questions for a specific unit
     public List<Question> getQuestionsByUnitId(int unitId) {
         List<Question> questions = new ArrayList<>();
         String sql = "SELECT q.* FROM Questions q " +
@@ -123,7 +123,7 @@ public class QuestionDAO {
         return questions;
     }
     
-    // NEW METHOD: Get quiz ID for a specific unit
+    //  Get quiz ID for a specific unit
     public int getQuizIdByUnitId(int unitId) {
         String sql = "SELECT QuizID FROM Quiz WHERE UnitID = ? LIMIT 1";
         
@@ -143,7 +143,7 @@ public class QuestionDAO {
         return -1; // Return -1 if not found
     }
     
-    // NEW METHOD: Get unit name by ID
+    // Get unit name by ID
     public String getUnitNameById(int unitId) {
         String sql = "SELECT Name FROM Unit WHERE UnitID = ?";
         
@@ -163,7 +163,7 @@ public class QuestionDAO {
         return "Unit " + unitId;
     }
     
-    // NEW METHOD: Check if answer is correct
+    // Check if answer is correct
     public boolean checkAnswer(int questionId, String userAnswer) {
         String sql = "SELECT correctAnswer FROM Questions WHERE QuestionID = ?";
         
@@ -185,7 +185,7 @@ public class QuestionDAO {
         return false;
     }
     
-    // NEW METHOD: Get total questions count for a unit
+    //  Get total questions count for a unit
     public int getQuestionCountByUnitId(int unitId) {
         String sql = "SELECT COUNT(*) as count FROM Questions q " +
                     "JOIN Quiz qu ON q.QuizID = qu.QuizID " +
@@ -207,7 +207,7 @@ public class QuestionDAO {
         return 0;
     }
     
-    // NEW METHOD: Get questions by unit and difficulty
+    //  Get questions by unit and difficulty
     public List<Question> getQuestionsByUnitAndDifficulty(int unitId, String difficulty) {
         List<Question> questions = new ArrayList<>();
         String sql = "SELECT q.* FROM Questions q " +
