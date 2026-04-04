@@ -12,7 +12,7 @@ public class UserStatsDAO {
         UserStats stats = new UserStats();
         stats.setUserId(userId);
         
-        // Fixed SQL query - correctly counts units taken vs passed
+        // correctly counts units taken vs passed
         String sql = "SELECT " +
                     "u.Username, " +
                     "u.Email, " +
